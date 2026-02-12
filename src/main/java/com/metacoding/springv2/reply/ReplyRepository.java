@@ -1,5 +1,5 @@
 package com.metacoding.springv2.reply;
 
-public class ReplyRepository {
-    
+public interface ReplyRepository {
+
 }
