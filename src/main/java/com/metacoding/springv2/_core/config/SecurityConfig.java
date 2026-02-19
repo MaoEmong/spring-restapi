@@ -3,6 +3,7 @@ package com.metacoding.springv2._core.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -10,6 +11,11 @@ import com.metacoding.springv2._core.filter.JwtAuthorizationFilter;
 
 @Configuration
 public class SecurityConfig {
+
+    @Bean
+    public BCryptPasswordEncoder encode() {
+        return new BCryptPasswordEncoder();
+    }
 
     // 시큐리티 필터 등록
     @Bean
