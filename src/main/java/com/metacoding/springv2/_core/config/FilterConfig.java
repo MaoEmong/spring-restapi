@@ -9,7 +9,7 @@ import com.metacoding.springv2._core.filter.CorsFilter;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+    // @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter());
         bean.addUrlPatterns("/*");
