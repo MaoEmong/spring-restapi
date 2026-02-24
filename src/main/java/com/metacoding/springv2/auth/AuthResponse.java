@@ -17,6 +17,17 @@ public class AuthResponse {
             this.username = user.getUsername();
             this.roles = user.getRoles();
         }
+    }
 
+    @Data
+    public static class UsernameCheckDTO {
+        private String username;
+        private boolean available;
+
+        // rule1 반영: 유저네임 중복체크 응답 전용 DTO
+        public UsernameCheckDTO(String username, boolean available) {
+            this.username = username;
+            this.available = available;
+        }
     }
 }

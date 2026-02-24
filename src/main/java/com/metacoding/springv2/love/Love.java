@@ -1,4 +1,4 @@
-package com.metacoding.springv2.reply;
+package com.metacoding.springv2.love;
 
 import java.sql.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,37 +7,35 @@ import com.metacoding.springv2.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * 게시글 '좋아요' 기능을 담당하는 엔티티입니다.
+ * 유저와 게시글의 다대일 관계를 가집니다.
+ */
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "reply_tb")
-public class Reply {
+@Table(name = "love_tb", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"board_id", "user_id"})
+})
+public class Love {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 100, nullable = false)
-    private String comment;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Reply(Integer id, String comment, User user, Board board, Timestamp createdAt) {
+    public Love(Integer id, Board board, User user, Timestamp createdAt) {
         this.id = id;
-        this.comment = comment;
-        this.user = user;
         this.board = board;
+        this.user = user;
         this.createdAt = createdAt;
     }
-
-    public void update(String comment) {
-        this.comment = comment;
-    }
-
 }
